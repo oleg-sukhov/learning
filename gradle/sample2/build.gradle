@@ -18,3 +18,6 @@ task wrapper(type: Wrapper) {
     gradleVersion = 1.12
 }
 
+task vrs << {
+	println 'Project version -> ' + project.version
+ }
