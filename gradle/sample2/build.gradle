@@ -19,15 +19,11 @@ task wrapper(type: Wrapper) {
     gradleVersion = 1.12
 }
 
-task gradleVrs << {
-	println 'Before taks action...'
-}
-
 task srcCompability << {
 	println 'Source compatibility -> ' + project.sourceCompatibility
 }
 
-task vrs(dependsOn: [srcCompability, gradleVrs]) << {
+task vrs(dependsOn: [srcCompability]) << {
 	println 'Project version -> ' + project.version
 }
 
