@@ -31,6 +31,13 @@ task loadVersion {
 	project.version = readVersion()
 }
 
+task makeReleaseVersion(group: 'versioning', description: 'Makes project a release version.') << {
+	version.release = true
+	ant.propertyfile(file: versionFile) {
+		entry(key: 'release', type: 'string', operation: '=', value: 'true')
+	}
+}
+
 loadVersion.finalizedBy vrs
 
 ProjectVersion readVersion() {
