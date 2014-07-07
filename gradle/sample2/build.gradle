@@ -69,3 +69,7 @@ class ProjectVersion {
 	}
 }
 
+task branchTest {
+    //stub for branch testing
+}
+
