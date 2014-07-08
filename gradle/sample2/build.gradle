@@ -34,7 +34,7 @@ task loadVersion {
 	project.version = readVersion()
 }
 
-task makeReleaseVersion(type: ReleaseVersionTask) {
+task makeReleaseVersion(type: ua.vn.os.tasks.ReleaseVersionTask) {
 	release = version.release
 	destFile = versionFile
 }
@@ -57,8 +57,8 @@ ProjectVersion readVersion() {
 }
 
 class ProjectVersion {
-    Integer major
     Integer minor
+    Integer major
     Boolean release
 
     ProjectVersion(Integer major, Integer minor) {
@@ -77,8 +77,3 @@ class ProjectVersion {
 		"$major.$minor${release ? '' : '-SNAPSHOT'}"
 	}
 }
-
-task branchTest {
-    //stub for branch testing
-}
-
