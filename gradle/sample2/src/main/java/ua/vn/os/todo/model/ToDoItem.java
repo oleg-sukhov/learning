@@ -55,7 +55,7 @@ public class ToDoItem implements Comparable<ToDoItem> {
     public int compareTo(ToDoItem toDoItem) {
         return this.getId().compareTo(toDoItem.getId());
     }
-r
+
     @Override
     public String toString() {
         return id + ": " + name + " [completed: " + completed + "]";
