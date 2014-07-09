@@ -6,6 +6,9 @@ version = version = new ProjectVersion(0, 1)
 sourceCompatibility = 1.7
 ext.versionFile = file('version.properties')
 
+def releaseVersionListener = new ua.vn.os.listeners.ReleaseVersionListener()
+gradle.taskGraph.addTaskExecutionGraphListener(releaseVersionListener)
+
 repositories {
 	mavenCentral()
 }
@@ -34,12 +37,7 @@ task loadVersion {
 	project.version = readVersion()
 }
 
-task makeReleaseVersion(type: ua.vn.os.tasks.ReleaseVersionTask) {
-	release = version.release
-	destFile = versionFile
-}
-
-task createDistribution(type: Zip, dependsOn: makeReleaseVersion) {
+task createDistribution(type: Zip) {
 	from war.outputs.files
 
 	from(sourceSets*.allSource) {
@@ -89,7 +87,6 @@ task release(dependsOn: backupReleaseDistribution) << {
 	logger.quiet 'Releasing the project...'
 }
 
-makeReleaseVersion.finalizedBy loadVersion
 loadVersion.finalizedBy vrs
 
 ProjectVersion readVersion() {
